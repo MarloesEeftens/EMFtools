@@ -1,0 +1,18 @@
+Package: EMFtools
+Type: Package
+Title: Helpful tools for research on the epidemiology of electromagnetic fields.
+Version: 1.0.0
+Author: Marloes Eeftens <marloes.eeftens@swisstph.ch>
+Maintainer: Marloes Eeftens <marloes.eeftens@swisstph.ch>
+Description: EMFtools is a collection of functions which facilitate the import, cleaning, analysis, visualization and reporting of data from measurements of radiofrequency electromagnetic fields (RF-EMF).
+License: GNU GPLv3
+Depends: foreign,
+  ggplot2, 
+  gridExtra, 
+  readxl,
+  reshape2, 
+  scales,
+  zoo
+Suggests: 
+Encoding: UTF-8
+LazyData: true
