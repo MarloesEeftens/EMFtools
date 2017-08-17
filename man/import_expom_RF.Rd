@@ -10,34 +10,34 @@
   }
 \details{}
 \value{The result is an R dataframe of your ExpoM-RF file  which is ready to work with and includes the variables:
-  \item{\code{PosixTime}{: POSIXct, date and time of each observation.}}
-  \item{\code{FM}{: numeric, field strength [V/m] in the 87.5–108 MHz band.}}
-  \item{\code{TV}{: numeric, field strength [V/m] in the 470–790 MHz band.}}
-  \item{\code{DL800}{: numeric, field strength [V/m] in the 791–821 MHz band.}}
-  \item{\code{UL800}{: numeric, field strength [V/m] in the 832–862 MHz band.}}
-  \item{\code{UL900}{: numeric, field strength [V/m] in the 880–915 MHz band.}}
-  \item{\code{DL900}{: numeric, field strength [V/m] in the 925–960 MHz band.}}
-  \item{\code{UL1800}{: numeric, field strength [V/m] in the 1710–1785 MHz band.}}
-  \item{\code{DL1800}{: numeric, field strength [V/m] in the 1805–1880 MHz band.}}
-  \item{\code{DECT}{: numeric, field strength [V/m] in the 1880–1900 MHz band.}}
-  \item{\code{UL2100}{: numeric, field strength [V/m] in the 1920–1980 MHz band.}}
-  \item{\code{DL2100}{: numeric, field strength [V/m] in the 2110–2170 MHz band.}}
-  \item{\code{WIFI2G}{: numeric, field strength [V/m] in the 2400–2485 MHz band.}}
-  \item{\code{UL2600}{: numeric, field strength [V/m] in the 2500–2570 MHz band.}}
-  \item{\code{DL2600}{: numeric, field strength [V/m] in the 2620–2690 MHz band.}}
-  \item{\code{WIMAX}{: numeric, field strength [V/m] in the 3400–3600 MHz band.}}
-  \item{\code{WIFI5G}{: numeric, field strength [V/m] in the 5150–5875 MHz band.}}
-  \item{\code{TOTAL}{: numeric, total field strength [V/m] in all bands above.}}
-  \item{\code{charging}{: numeric, whether (1) or not (0) the ExpoM-RF was charging.}}
-  \item{\code{id}{: numeric, ID of the ExpoM-RF sampling device.}}
-  \item{\code{latitude}{: numeric, Latitude in decimal degrees.}}
-  \item{\code{longitude}{: numeric, Longitude in decimal degrees.}}
-  \item{\code{speed}{: numeric, Estimated speed that the device is moving in [km/h].}}
-  \item{\code{nr_sats}{: numeric, Number of satellites available to determine the coordinate.}}
-  \item{\code{marker}{: numeric, Markers counted as the marker button was pressed.}}
-  \item{\code{charge}{: numeric, Percentage charge remaining.}}
-  \item{\code{charging}{: logical, whether (TRUE) or not (FALSE) the device was charging.}}
-  \item{\code{overload}{: logical, Whether (TRUE) or not (FALSE) the device experienced an overload.}}
+  \item{\code{PosixTime}}{POSIXct, date and time of each observation.}
+  \item{\code{FM}}{numeric, field strength [V/m] in the 87.5–108 MHz band.}
+  \item{\code{TV}}{numeric, field strength [V/m] in the 470–790 MHz band.}
+  \item{\code{DL800}}{numeric, field strength [V/m] in the 791–821 MHz band.}
+  \item{\code{UL800}}{numeric, field strength [V/m] in the 832–862 MHz band.}
+  \item{\code{UL900}}{numeric, field strength [V/m] in the 880–915 MHz band.}
+  \item{\code{DL900}}{numeric, field strength [V/m] in the 925–960 MHz band.}
+  \item{\code{UL1800}}{numeric, field strength [V/m] in the 1710–1785 MHz band.}
+  \item{\code{DL1800}}{numeric, field strength [V/m] in the 1805–1880 MHz band.}
+  \item{\code{DECT}}{numeric, field strength [V/m] in the 1880–1900 MHz band.}
+  \item{\code{UL2100}}{numeric, field strength [V/m] in the 1920–1980 MHz band.}
+  \item{\code{DL2100}}{numeric, field strength [V/m] in the 2110–2170 MHz band.}
+  \item{\code{WIFI2G}}{numeric, field strength [V/m] in the 2400–2485 MHz band.}
+  \item{\code{UL2600}}{numeric, field strength [V/m] in the 2500–2570 MHz band.}
+  \item{\code{DL2600}}{numeric, field strength [V/m] in the 2620–2690 MHz band.}
+  \item{\code{WIMAX}}{numeric, field strength [V/m] in the 3400–3600 MHz band.}
+  \item{\code{WIFI5G}}{numeric, field strength [V/m] in the 5150–5875 MHz band.}
+  \item{\code{TOTAL}}{numeric, total field strength [V/m] in all bands above.}
+  \item{\code{charging}}{numeric, whether (1) or not (0) the ExpoM-RF was charging.}
+  \item{\code{id}}{numeric, ID of the ExpoM-RF sampling device.}
+  \item{\code{latitude}}{numeric, Latitude in decimal degrees.}
+  \item{\code{longitude}}{numeric, Longitude in decimal degrees.}
+  \item{\code{speed}}{numeric, Estimated speed that the device is moving in [km/h].}
+  \item{\code{nr_sats}}{numeric, Number of satellites available to determine the coordinate.}
+  \item{\code{marker}}{numeric, Markers counted as the marker button was pressed.}
+  \item{\code{charge}}{numeric, Percentage charge remaining.}
+  \item{\code{charging}}{logical, whether (TRUE) or not (FALSE) the device was charging.}
+  \item{\code{overload}}{logical, Whether (TRUE) or not (FALSE) the device experienced an overload.}
 }
 \references{}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
