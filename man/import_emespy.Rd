@@ -1,7 +1,7 @@
 \name{import_emespy}
 \alias{import_emespy}
 \title{Import (usually very huge) .xls files downloaded from the EMEspy device in R.}
-\description{Given the filename of a file downloaded from the EMEspy, this function imports the speficied file into the R environment as a dataframe.}
+\description{Given the filename of a file downloaded from the EMEspy, this function imports the specified file into the R environment as a dataframe.}
 \usage{import_emespy(filename,prefix,suffix)}
 \arguments{
   \item{filename}{The complete filename (including path, name and extension) to the file you want to import into R.}

@@ -75,9 +75,10 @@ import_expom_RF=function(filename,prefix,suffix){
   #3) Convert to numeric: number of satellites that GPS signal is based on, marker, battery charge, USB cable:
   dat$nr_sats<-as.numeric(dat[["GPS# Satellites"]])
   dat$marker<-as.numeric(dat[["Marker"]])
-  dat$charge<-as.numeric(dat[["Battery charge %"]])
-  dat$charging<-ifelse(dat[["USB cable"]]=="no",FALSE,TRUE)
-  dat$overload<-ifelse(dat[["Overload"]]=="no",FALSE,TRUE)
+  dat$charge<-as.numeric(gsub("%","",as.character(dat[["Battery charge %"]])))
+  dat$charge<-ifelse(all(dat$charge<=1),dat$charge<-dat$charge*100,dat$charge<-dat$charge) #In case the "%" makes everything <1.
+  dat$charging<-ifelse(dat[["USB cable"]]=="yes",TRUE,FALSE)
+  dat$overload<-ifelse(dat[["Overload"]]%in%c(NA,0,"","No"),FALSE,TRUE)
   dat[["GPS# Satellites"]]<-NULL
   dat[["Marker"]]<-NULL
   dat[["Battery charge %"]]<-NULL
@@ -88,13 +89,18 @@ import_expom_RF=function(filename,prefix,suffix){
   names(dat)[names(dat) %in% old_band_names]<-new_band_names
   if(!prefix==""){names(dat)[names(dat) %in% new_other_names]<-paste0(prefix,new_other_names)}
 
-  #5) Set some unused variables to null:
+  #5) If the original was an .xlsx file:
+  if(filetype %in% c("xls","xlsx")){
+    dat[,new_band_names]<-lapply(dat[,new_band_names],function(x) round(x,digits=4))
+    }
+
+  #6) Set some unused variables to null:
   dat[["GPS Fix"]]<-NULL
   dat[["GPS HDOP"]]<-NULL
   dat[["GPS Altitude"]]<-NULL
   dat[["Sequence number"]]<-NULL
 
-  #6) Format timestamp:
+  #7) Format timestamp:
   PosixTime<-as.POSIXct(strptime(dat[["Date and Time"]],format=timeformats[1])) #e.g. 2016-10-13 12:55:28
   if(any(is.na(PosixTime))){PosixTime<-as.POSIXct(strptime(dat[["Date and Time"]],format=timeformats[2]))}
   if(any(is.na(PosixTime))){PosixTime<-as.POSIXct(strptime(dat[["Date and Time"]],format=timeformats[3]))}
@@ -105,6 +111,6 @@ import_expom_RF=function(filename,prefix,suffix){
   dat[["Date and Time"]]<-NULL
   dat<-cbind(PosixTime,dat)
 
-  #7) Return the resulting R dataframe:
+  #8) Return the resulting R dataframe:
   return(dat)
 }

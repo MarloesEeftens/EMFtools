@@ -6,7 +6,7 @@
 \arguments{
   \item{x}{A value, numeric vector or R dataframe that includes the values to be converted.}
   \item{vars}{If x is a dataframe, indicate a single variable name OR a vector of variable names for conversion.}
-  \item{old_suffix}{(Optional, no default) If a suffix was included in your original dataset (e.g. "_Vm", you can remove this from your converted variables by specifying no new_suffix, or specify a (e.g.) new_suffix="mWm2") instead. If no old_suffix OR new_suffix is specified, the original variable names are again used for the mW/m² values in the returned dataset.}
+  \item{old_suffix}{(Optional, no default) If a suffix was included in your original dataset (e.g. "_Vm"), you can remove this from your converted variables by specifying no new_suffix, or specify a new_suffix (e.g. new_suffix="mWm2") instead. If no old_suffix OR new_suffix is specified, the original variable names are again used for the mW/m² values in the returned dataset.}
   \item{new_suffix}{(Optional, no default) Same as old_suffix, see above, e.g. "_mWm2"}
 }
 \details{}

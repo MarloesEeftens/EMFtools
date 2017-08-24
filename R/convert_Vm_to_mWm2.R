@@ -15,7 +15,7 @@ convert_Vm_to_mWm2=function(x,vars,old_suffix,new_suffix){
   if(is.data.frame(x)){
     new_vars<-gsub(old_suffix,new_suffix,vars)
     new_x<-x
-    new_x[,new_vars]<-lapply(x[,vars],function(x) x^2*1000/377)
+    new_x[,new_vars]<-lapply(x[,vars],function(xx) xx^2*1000/377)
     }
   if(is.vector(x)|is.numeric(x)){new_x<-x^2*1000/377}
 

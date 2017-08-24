@@ -11,24 +11,23 @@
 \details{}
 \value{The result is an R dataframe of your ExpoM-RF file  which is ready to work with and includes the variables:
   \item{\code{PosixTime}}{POSIXct, date and time of each observation.}
-  \item{\code{FM}}{numeric, field strength [V/m] in the 87.5–108 MHz band.}
-  \item{\code{TV}}{numeric, field strength [V/m] in the 470–790 MHz band.}
-  \item{\code{DL800}}{numeric, field strength [V/m] in the 791–821 MHz band.}
-  \item{\code{UL800}}{numeric, field strength [V/m] in the 832–862 MHz band.}
-  \item{\code{UL900}}{numeric, field strength [V/m] in the 880–915 MHz band.}
-  \item{\code{DL900}}{numeric, field strength [V/m] in the 925–960 MHz band.}
-  \item{\code{UL1800}}{numeric, field strength [V/m] in the 1710–1785 MHz band.}
-  \item{\code{DL1800}}{numeric, field strength [V/m] in the 1805–1880 MHz band.}
-  \item{\code{DECT}}{numeric, field strength [V/m] in the 1880–1900 MHz band.}
-  \item{\code{UL2100}}{numeric, field strength [V/m] in the 1920–1980 MHz band.}
-  \item{\code{DL2100}}{numeric, field strength [V/m] in the 2110–2170 MHz band.}
-  \item{\code{WIFI2G}}{numeric, field strength [V/m] in the 2400–2485 MHz band.}
-  \item{\code{UL2600}}{numeric, field strength [V/m] in the 2500–2570 MHz band.}
-  \item{\code{DL2600}}{numeric, field strength [V/m] in the 2620–2690 MHz band.}
-  \item{\code{WIMAX}}{numeric, field strength [V/m] in the 3400–3600 MHz band.}
-  \item{\code{WIFI5G}}{numeric, field strength [V/m] in the 5150–5875 MHz band.}
-  \item{\code{TOTAL}}{numeric, total field strength [V/m] in all bands above.}
-  \item{\code{charging}}{numeric, whether (1) or not (0) the ExpoM-RF was charging.}
+  \item{\code{FM}}{numeric, Field strength [V/m] in the 87.5–108 MHz band.}
+  \item{\code{TV}}{numeric, Field strength [V/m] in the 470–790 MHz band.}
+  \item{\code{DL800}}{numeric, Field strength [V/m] in the 791–821 MHz band.}
+  \item{\code{UL800}}{numeric, Field strength [V/m] in the 832–862 MHz band.}
+  \item{\code{UL900}}{numeric, Field strength [V/m] in the 880–915 MHz band.}
+  \item{\code{DL900}}{numeric, Field strength [V/m] in the 925–960 MHz band.}
+  \item{\code{UL1800}}{numeric, Field strength [V/m] in the 1710–1785 MHz band.}
+  \item{\code{DL1800}}{numeric, Field strength [V/m] in the 1805–1880 MHz band.}
+  \item{\code{DECT}}{numeric, Field strength [V/m] in the 1880–1900 MHz band.}
+  \item{\code{UL2100}}{numeric, Field strength [V/m] in the 1920–1980 MHz band.}
+  \item{\code{DL2100}}{numeric, Field strength [V/m] in the 2110–2170 MHz band.}
+  \item{\code{WIFI2G}}{numeric, Field strength [V/m] in the 2400–2485 MHz band.}
+  \item{\code{UL2600}}{numeric, Field strength [V/m] in the 2500–2570 MHz band.}
+  \item{\code{DL2600}}{numeric, Field strength [V/m] in the 2620–2690 MHz band.}
+  \item{\code{WIMAX}}{numeric, Field strength [V/m] in the 3400–3600 MHz band.}
+  \item{\code{WIFI5G}}{numeric, Field strength [V/m] in the 5150–5875 MHz band.}
+  \item{\code{TOTAL}}{numeric, Total field strength [V/m] in all bands above.}
   \item{\code{id}}{numeric, ID of the ExpoM-RF sampling device.}
   \item{\code{latitude}}{numeric, Latitude in decimal degrees.}
   \item{\code{longitude}}{numeric, Longitude in decimal degrees.}
@@ -36,22 +35,26 @@
   \item{\code{nr_sats}}{numeric, Number of satellites available to determine the coordinate.}
   \item{\code{marker}}{numeric, Markers counted as the marker button was pressed.}
   \item{\code{charge}}{numeric, Percentage charge remaining.}
-  \item{\code{charging}}{logical, whether (TRUE) or not (FALSE) the device was charging.}
+  \item{\code{charging}}{logical, Whether (TRUE) or not (FALSE) the device was charging.}
   \item{\code{overload}}{logical, Whether (TRUE) or not (FALSE) the device experienced an overload.}
 }
 \references{}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
-\note{As far as i know, R packages do not support example .xlsx files... The function should work also for them. A sample .xlsx file is only available from within SwissTPH. But chances are you have your own anyways!}
+\note{As far as I know, R packages do not support example .xlsx files... The function should work also for them. The sample .xlsx file is only available from within SwissTPH. But chances are you have your own anyways!
+Exported .xlsx files contain field strengths with 16 digits after the decimal point, whereas .csv files only 4 digits after the decimal point. This is false precision in the .xlsx files, since the difference is ±0.00005 V/m, which is just 1/60 of the lowest band's quantification limit (0.003 V/m). We have removed this false precision in the .xlsx import, by rounding all field strenghts to 4 digits. The resulting R files are identical, no matter if .csv or .xlsx was used to save the original data.}
 \seealso{}
 \examples{
 #Write the example .csv to a folder of your choice (please change pathname!):
 my_filename1<-"V:/EEH/R_functions/EMFtools/data/expom_example2.csv"
 write.table(expom_example2,file=my_filename1,sep="\t",quote=FALSE,row.names=FALSE)
 #Import using the import function:
-my_expom_file<-import_expom_RF(filename=my_filename1,prefix="EXPOM_",suffix="_Vm")
-str(my_expom_file)
+my_expom_file1<-import_expom_RF(filename=my_filename1,prefix="EXPOM_",suffix="_Vm")
+str(my_expom_file1)
 
 #Read an .xlsx file into R:
-my_expom_file<-import_expom_RF(filename="V:/EEH/R_functions/EMFtools/data/expom_example3.xlsx")
+my_filename2<-"V:/EEH/R_functions/EMFtools/data/expom_example3.xlsx"
+my_expom_file2<-import_expom_RF(filename=my_filename2,prefix="EXPOM_",suffix="_Vm")
+
+identical(my_expom_file1,my_expom_file2)
 }
 \keyword{}

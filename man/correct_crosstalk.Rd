@@ -11,7 +11,7 @@
   \item{activityvar}{(Optional) There is a possibility to correct crosstalk-affected values down to the median crosstalk-unaffected value experienced during the same activity (e.g. in personal measurements). To do that, you can specify the (character) variable containing the activity information as follows: activityvar="act". If no activityvar is specified, the default is to correct to no_ct_sig1 and no_ct_sig2, see below.}
   \item{no_ct_sig1}{(Optional) There is a possibility to specify the level that signal1 should be corrected to, in case it is affected by crosstalk. Specify as follows: no_ct_sig1=1.659145e-05. If no activityvar is specified, no_ct_sig1 defaults to the lowest value present in the uncorrected data of signal1.}
   \item{no_ct_sig2}{(Optional) Similar to no_ct_sig1, see above. no_ct_sig2 Defaults to the lowest value present in the uncorrected data of signal2.}
-  \item{stats}{(Optional, defaults to stats=FALSE.) TRUE will produce a few statistics about the correction (see below), and return the function output in the form of a list consisting of [[1]], the corrected dataset and [[2]] a file detailing the statistics above, listing the following items:
+  \item{stats}{(Optional, defaults to stats=FALSE.) TRUE will produce some statistics about the correction (see below), and return the function output in the form of a list consisting of [[1]], the corrected dataset and [[2]] a file detailing the statistics above, listing the following items:
      n_obs (number of observations),
      duration_hours (duration of the measurement in hours),
      duration_days (duration of the measurement in days),
@@ -28,8 +28,8 @@
      perc_reduction_sig1 (percentage exposure reduction -relative to uncorrected- after correction signal1),
      perc_reduction_sig2 (percentage exposure reduction -relative to uncorrected- after correction signal2)
 }
-  \item{plot_folder}{Specify a folder and time series plots for each cluster of the time series will be exported so that you can visually check the corrections.}
-  \item{plot_nr}{Specify the number of plots you want to export. If you have a long time series of measurements, specifying plot_nr allows you to export just a few plots only for visual checking.}
+  \item{plot_folder}{Specify a folder into which a time series plots for each cluster can be exported so that you can visually check the corrections.}
+  \item{plot_nr}{Specify the number of plots you want to export. If you have a long time series of measurements, specifying plot_nr allows you to export just a few plots for visual checking.}
   \item{window_width}{Number of observations (window) required before and after an observation to detect a sudden change in signal1 or signal2 or in the ratio between them.}
   \item{change_threshold}{Change in signal required within the signals or in the ratio between the signals to trigger the start of a potential new data cluster. Defaults to 10: a 10-fold change (increase or decrease) over the interval of window_width observations is required to flag the start of a potential new cluster.}
   \item{correlation_threshold}{The correlation threshold between signal1 and signal 2 that should be exceeded in order for the cluster to be flagged as crosstalk. Defaults to 0.20, because we usually expect very little natural correlation between the frequency bands.}
@@ -38,7 +38,7 @@
 \details{}
 \value{
   \item{$df}{The same dataframe as provided in dataset, but with additional variables signal1_cor and signal2_cor}
-  \item{$stats}{If stats==TRUE, some statistics on the impact the correction.}
+  \item{$stats}{If stats==TRUE, some statistics on the impact of the correction.}
 }
 \references{A paper describing an application of the function "correct_crosstalk" has been submitted for publication.}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
