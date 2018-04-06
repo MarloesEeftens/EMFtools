@@ -15,7 +15,7 @@
 \value{This function returns the same dataframe as provided in dataset, but with the dynamic range correction applied. The variables are overwritten unless a new_suffix is supplied.}
 \references{}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
-\note{}
+\note{Based on code by Benjamin Struchen.}
 \seealso{}
 \examples{
 dynrange_corrected<-correct_expom_dynrange(expom_example1,new_suffix="_corr",new_total=TRUE)

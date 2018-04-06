@@ -10,7 +10,7 @@
   \item{new_suffix}{(Optional, no default) Same as old_suffix, see above, e.g. "_mWm2"}
 }
 \details{}
-\value{A dataframe with the levels of all indicated variables converted to the mW/m².}
+\value{If x is a vector, the result is a vector of the same size with all values converted to mW/m². If x is a dataframe, the result is a dataframe with all values within the indicated variables converted to mW/m².}
 \references{}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
 \note{}

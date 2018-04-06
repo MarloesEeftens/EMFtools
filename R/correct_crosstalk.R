@@ -27,16 +27,16 @@ correct_crosstalk=function(dataset,timevar,signal1,signal2,activityvar,no_ct_sig
   if(missing(change_threshold)){change_threshold<-10}
   if(missing(correlation_threshold)){correlation_threshold<-0.20}
   # You need the suggested package for this function
-  if (missing(plot_folder)==FALSE&!requireNamespace("ggplot2",quietly=TRUE)){
+  if(missing(plot_folder)==FALSE&!requireNamespace("ggplot2",quietly=TRUE)){
     stop("package ggplot2 is needed for this function to work. Please install it.")
   }
-  if (missing(plot_folder)==FALSE&!requireNamespace("gridExtra",quietly=TRUE)){
+  if(missing(plot_folder)==FALSE&!requireNamespace("gridExtra",quietly=TRUE)){
     stop("package gridExtra is needed for this function to work. Please install it.")
   }
-  if (missing(plot_folder)==FALSE&!requireNamespace("reshape2",quietly=TRUE)){
+  if(missing(plot_folder)==FALSE&!requireNamespace("reshape2",quietly=TRUE)){
     stop("package reshape2 is needed for this function to work. Please install it.")
   }
-  if (missing(plot_folder)==FALSE&!requireNamespace("scales",quietly=TRUE)){
+  if(missing(plot_folder)==FALSE&!requireNamespace("scales",quietly=TRUE)){
     stop("package scales is needed for this function to work. Please install it.")
   }
 

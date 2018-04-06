@@ -40,7 +40,7 @@
 }
 \references{}
 \author{Marloes Eeftens, marloes.eeftens@swisstph.ch}
-\note{As far as I know, R packages do not support example .xlsx files... The function should work also for them. The sample .xlsx file is only available from within SwissTPH. But chances are you have your own anyways!
+\note{As far as I know, R packages do not support example .xlsx files... The function should work also for them. The example .xlsx file is only available from within SwissTPH. But chances are you have your own anyways!
 Exported .xlsx files contain field strengths with 16 digits after the decimal point, whereas .csv files only 4 digits after the decimal point. This is false precision in the .xlsx files, since the difference is ±0.00005 V/m, which is just 1/60 of the lowest band's quantification limit (0.003 V/m). We have removed this false precision in the .xlsx import, by rounding all field strenghts to 4 digits. The resulting R files are identical (aside from slighly different rounding methods), no matter if .csv or .xlsx was used to save the original data.}
 \seealso{}
 \examples{
