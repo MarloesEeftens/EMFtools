@@ -7,9 +7,12 @@ Maintainer: Marloes Eeftens <marloes.eeftens@swisstph.ch>
 Description: EMFtools is a collection of functions which facilitate the import, cleaning, analysis, visualization and reporting of data from measurements of radiofrequency electromagnetic fields (RF-EMF).
 License: GNU GPLv3
 Depends: chron,
+  data.table,
+  dplyr,
   foreign,
   ggplot2, 
   gridExtra, 
+  lubridate,
   readxl,
   reshape2, 
   scales,

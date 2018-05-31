@@ -5,12 +5,10 @@
 #################################
 
 #Function "import_emespy":
-import_emespy=function(filename,prefix,suffix){
+import_emespy=function(filename,prefix="",suffix=""){
 
   #0) Set defaults & parameters:
   if(substr(filename,nchar(filename)-3,nchar(filename))!=".xls"){stop(cat("File extension not recognized, this function was built for .xls files. Please provide the extension as part of the filename as follows: filename=",'"',"U:/my_folder/my_expom_file.csv",'"',"."))}
-  if(missing(prefix)){prefix<-""}
-  if(missing(suffix)){suffix<-""}
   old_names<-c("Sample","Date","Time","Battery","FM","TV3","TETRA I","TETRA II","TETRA III",
                "TV4&5","LTE 800 (DL)","LTE 800 (UL)","GSM + UMTS 900(UL)","GSM + UMTS 900(DL)",                    "GSM 1800 (UL)",
                "GSM 1800 (DL)","DECT","UMTS 2100 (UL)","UMTS 2100 (DL)","WIFI 2G","LTE 2600 (UL)",
@@ -52,6 +50,7 @@ import_emespy=function(filename,prefix,suffix){
   dat[["Date"]]<-NULL
   dat[["Time"]]<-NULL
   dat<-cbind(PosixTime,dat)
+  dat<-dat[dat$PosixTime>as.POSIXct("2000-01-01 23:59:59"),] #Sometimes there is a single observation from 2000... remove!
 
   #6) If band names are imported as characters, convert to numbers:
   dat[,new_band_names]<-as.numeric(as.character(unlist(dat[,new_band_names])))
