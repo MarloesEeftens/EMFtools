@@ -21,10 +21,9 @@ import_emespy=function(filename,prefix="",suffix=""){
   timeformats<-c("%Y-%m-%d %H:%M:%S","%Y/%m/%d %H:%M:%S","%d.%m.%Y %H:%M:%S","%Y/%m/%d %H:%M:%S","%d/%m/%Y %H:%M:%S","%d.%m.%Y %H:%M:%S")
 
   #1) Read the file:
-  firstline<-read_excel(filename,sheet="V.m-1",range="B1:C1",col_names=FALSE)
-  dat<-read_excel(filename,sheet="V.m-1",skip=4,col_names=TRUE)
+  dat<-read_xls(filename,sheet="V.m-1",skip=4,col_names=TRUE)
   dat<-as.data.frame(dat[-1,])
-  dat$id<-as.character(firstline[1,2])
+  dat$id<-colnames(read_xls(filename,sheet="V.m-1",range="C1",skip=0))
 
   #2) Convert to numeric: number of satellites that GPS signal is based on, marker, battery charge, USB cable:
   dat$marker<-as.numeric(dat[["Marks"]])
@@ -33,7 +32,8 @@ import_emespy=function(filename,prefix="",suffix=""){
   dat[["Battery"]]<-NULL
 
   #3) Change names of the frequency bands and other variables to easier ones:
-  names(dat)[names(dat) %in% old_band_names]<-new_band_names
+  names_to_keep<-c(old_band_names %in% names(dat))
+  setnames(dat,old=old_band_names[names_to_keep],new=new_band_names[names_to_keep])
   if(!prefix==""){names(dat)[names(dat) %in% new_other_names]<-paste0(prefix,new_other_names)}
 
   #4) Set some unused variables to null:
@@ -53,7 +53,7 @@ import_emespy=function(filename,prefix="",suffix=""){
   dat<-dat[dat$PosixTime>as.POSIXct("2000-01-01 23:59:59"),] #Sometimes there is a single observation from 2000... remove!
 
   #6) If band names are imported as characters, convert to numbers:
-  dat[,new_band_names]<-as.numeric(as.character(unlist(dat[,new_band_names])))
+  dat[,new_band_names[names_to_keep]]<-as.numeric(as.character(unlist(dat[,new_band_names[names_to_keep]])))
 
   #7) Return the resulting R dataframe:
   return(dat)

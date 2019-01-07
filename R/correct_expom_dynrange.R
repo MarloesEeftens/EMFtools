@@ -13,14 +13,12 @@ correct_expom_dynrange=function(dataset,bandnames,prefix,old_suffix,new_suffix,n
   if(missing(prefix)){prefix<-""}
   if(missing(old_suffix)){old_suffix<-""}
   if(missing(new_suffix)){new_suffix<-""}
-  if(missing(bandnames)){
-    old_bandnames<-paste0(prefix,c("FM","TV","DL800","UL800","UL900","DL900","UL1800","DL1800","DECT",
-                                   "UL2100","DL2100","WIFI2G","UL2600","DL2600","WIMAX","WIFI5G"),old_suffix)
-    new_bandnames<-paste0(prefix,c("FM","TV","DL800","UL800","UL900","DL900","UL1800","DL1800","DECT",
-                                   "UL2100","DL2100","WIFI2G","UL2600","DL2600","WIMAX","WIFI5G"),new_suffix)
-    }
-  if(sum(old_bandnames %in% names(dat))!=16){
-    stop("Not all bandnames found in dataset... Define the names of all 16 variables containing the ExpoM-RF frequency bands.")}
+  if(missing(bandnames)){bandnames<-c("FM","TV","DL800","UL800","UL900","DL900","UL1800","DL1800","DECT",
+                                      "UL2100","DL2100","WIFI2G","UL2600","DL2600","WIMAX","WIFI5G")}
+  if(!all(bandnames %in% names(dat))){
+    stop("Not all bandnames found in dataset... Define all variables containing the ExpoM-RF frequency bands.")}
+  old_bandnames<-paste0(prefix,bandnames,old_suffix)
+  new_bandnames<-paste0(prefix,bandnames,new_suffix)
 
   #1) Define dynamic range:
   low_replimit_vec<-c(0.02,rep(0.005,8),0.003,0.003,0.005,rep(0.003,3),0.05)/2

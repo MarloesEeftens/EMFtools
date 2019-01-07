@@ -32,13 +32,13 @@ import_expom_RF=function(filename,prefix,suffix){
   if(filetype %in% c("xls","xlsx")){
     dat<-as.data.frame(read_excel(filename,sheet="ExpoM RF Measurement",skip=1,col_names=TRUE))
     #Add Expom id to the dataset as column, not text:
-    dat$id<-as.numeric(read_excel(filename,sheet="ExpoM RF Measurement",col_names=FALSE,skip=0)[1,2])
+    dat$id<-as.numeric(colnames(read_excel(filename,sheet="ExpoM RF Measurement",range="B1",skip=0)))
     }
   if(filetype=="csv"){
     try(dat<-read.csv(file=filename,header=FALSE,skip=1,sep=separators[1]),silent=TRUE)
     try(dat$id<-as.numeric(gsub("\\D","",read.csv(file=filename,header=FALSE,nrows=1,sep=separators[1])[1,1])))
     if(dim(dat)[2]<3){
-      try(dat<-read.csv(file=filename,header=FALSE,skip=2,sep=separators[2]),silent=TRUE)
+      try(dat<-read.csv(file=filename,header=FALSE,skip=1,sep=separators[2]),silent=TRUE)
       try(dat$id<-as.numeric(gsub("\\D","",read.csv(file=filename,header=FALSE,nrows=1,sep=separators[2])[1,1])))
       }
     if(dim(dat)[2]<3){
