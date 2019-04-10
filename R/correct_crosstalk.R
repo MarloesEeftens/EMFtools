@@ -5,7 +5,7 @@
 #################################
 
 #Function correct_crosstalk:
-correct_crosstalk=function(dataset,timevar,signal1,signal2,activityvar,no_ct_sig1,no_ct_sig2,stats,plot_folder,plot_nr,window_width,change_threshold,correlation_threshold,suppressMessages){
+correct_crosstalk=function(dataset,timevar,signal1,signal2,activityvar,no_ct_sig1,no_ct_sig2,stats=FALSE,plot_folder,plot_nr,window_width=4,change_threshold=10,correlation_threshold=0.20,suppressMessages){
 
   #0) Check settings, generate messages, set defaults:
   if(missing(dataset)){stop("Please specify a dataset...")}
@@ -22,10 +22,6 @@ correct_crosstalk=function(dataset,timevar,signal1,signal2,activityvar,no_ct_sig
     if(missing(change_threshold)){message("change_threshold not set, default is: 10")}
     if(missing(correlation_threshold)){message("correlation_threshold not set, default is: 0.20")}
     if(missing(plot_folder)){message("No plot_folder specified. Time series plots will not be generated.")}}
-  if(missing(stats)){stats=FALSE}
-  if(missing(window_width)){window_width<-4}
-  if(missing(change_threshold)){change_threshold<-10}
-  if(missing(correlation_threshold)){correlation_threshold<-0.20}
   # You need the suggested package for this function
   if(missing(plot_folder)==FALSE&!requireNamespace("ggplot2",quietly=TRUE)){
     stop("package ggplot2 is needed for this function to work. Please install it.")
@@ -66,6 +62,7 @@ correct_crosstalk=function(dataset,timevar,signal1,signal2,activityvar,no_ct_sig
   #4) If one of the ROCs is above the threshold, define indicators a new potential cluster
   dat$change_ind_temp<-0
   dat$change_ind_temp[dat$ROCslope1>change_threshold|dat$ROCslope2>change_threshold|dat$ROCratio>change_threshold]<-1
+  dat$change_ind_temp[is.na(dat$sig1_uncor)|is.na(dat$sig2_uncor)]<-0
 
   #5) Define the temporary clusters based on the change indicators:
   dat$cluster_temp<-cumsum(dat$change_ind_temp)+1

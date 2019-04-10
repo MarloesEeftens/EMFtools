@@ -5,7 +5,7 @@
 #################################
 
 #Function "import_expom_RF":
-import_expom_RF=function(filename,prefix,suffix){
+import_expom_RF=function(filename,prefix="",suffix=""){
 
   #0) Set defaults & parameters:
   filetype<-NA
@@ -13,8 +13,6 @@ import_expom_RF=function(filename,prefix,suffix){
   if(substr(filename,nchar(filename)-3,nchar(filename))==".xls"){filetype<-"xls"}
   if(substr(filename,nchar(filename)-4,nchar(filename))==".xlsx"){filetype<-"xlsx"}
   if(is.na(filetype)){stop(cat("File extension not recognized. Please provide the extension as part of the filename as follows: filename=",'"',"U:/my_folder/my_expom_file.csv",'"',".",sep=""))}
-  if(missing(prefix)){prefix<-""}
-  if(missing(suffix)){suffix<-""}
   old_names_xlsx<-c("Date and Time","Sequence number","FM Radio","TV","Mobile 800 MHz Downlink",
                "Mobile 800 MHz Uplink","Mobile 900 MHz Uplink","Mobile 900 MHz Downlink","Mobile 1.8 GHz Uplink",
                "Mobile 1.8 GHz Downlink","DECT","Mobile 2.1 GHz Uplink","Mobile 2.1 GHz Downlink",
@@ -35,14 +33,14 @@ import_expom_RF=function(filename,prefix,suffix){
     dat$id<-as.numeric(colnames(read_excel(filename,sheet="ExpoM RF Measurement",range="B1",skip=0)))
     }
   if(filetype=="csv"){
-    try(dat<-read.csv(file=filename,header=FALSE,skip=1,sep=separators[1]),silent=TRUE)
+    try(dat<-read.csv(file=filename,header=FALSE,skip=2,sep=separators[1]),silent=TRUE)
     try(dat$id<-as.numeric(gsub("\\D","",read.csv(file=filename,header=FALSE,nrows=1,sep=separators[1])[1,1])))
     if(dim(dat)[2]<3){
-      try(dat<-read.csv(file=filename,header=FALSE,skip=1,sep=separators[2]),silent=TRUE)
+      try(dat<-read.csv(file=filename,header=FALSE,skip=2,sep=separators[2]),silent=TRUE)
       try(dat$id<-as.numeric(gsub("\\D","",read.csv(file=filename,header=FALSE,nrows=1,sep=separators[2])[1,1])))
       }
     if(dim(dat)[2]<3){
-      try(dat<-read.csv(file=filename,header=FALSE,skip=1,sep=separators[3]),silent=TRUE)
+      try(dat<-read.csv(file=filename,header=FALSE,skip=2,sep=separators[3]),silent=TRUE)
       try(dat$id<-as.numeric(gsub("\\D","",read.csv(file=filename,header=FALSE,nrows=1,sep=separators[3])[1,1])))
       }
     #Match the variable names to those of xls and xlsx filetype:
